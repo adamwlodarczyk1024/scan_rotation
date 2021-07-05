@@ -2,30 +2,31 @@
 # i use this dataset https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/DJHVHB
 import os
 from PyPDF2 import PdfFileWriter, PdfFileReader
-
-# place where you have pdf multiscan
+from pdf2image import *
+# PARAMETERS
 path = "C:\\Users\\Adam\\Documents\\dane do ml\\pdf"
-COUNT = 1
+savepath = "C:\\Users\\Adam\\Documents\\dane do ml\\jpg"
+poppler = 'C:\\poppler-21.03.0\\Library\\bin'
 
-def renamefiles(text):
+
+def rename_files(text):
     os.chdir(path)
-    # Function to increment count
-    # to make the files sorted.
+    COUNT = 1
+
     def increment():
         global COUNT
         COUNT = COUNT + 1
 
     for f in os.listdir(path):
         f_name, f_ext = os.path.splitext(f)
-        f_name = text + str(COUNT)
+        f_name = "{0}{1}".format(text, COUNT)
         increment()
 
         new_name = '{}_zmiana{}'.format(f_name, f_ext)
         os.rename(f, new_name)
 
 
-
-def splitpdf():
+def split_pdf():
     os.chdir(path)
     for filename in os.listdir(path):
         infile = open(filename, "rb")
@@ -34,12 +35,10 @@ def splitpdf():
         for i in range(inputpdf.numPages):
             output = PdfFileWriter()
             output.addPage(inputpdf.getPage(i))
-            with open("s_{0}-page{1}.pdf".format(filename.replace(".pdf",""), i), "wb") as outputStream:
+            with open("s_{0}-page{1}.pdf".format(filename.replace(".pdf", ""), i), "wb") as outputStream:
                 output.write(outputStream)
             outputStream.close()
-        infile.close()  #find this take me a lot of time. It's close open pdf and only after it you can delete old files
-
-
+        infile.close()
 
 
 def remove_old_files():
@@ -47,3 +46,12 @@ def remove_old_files():
     for filename in os.listdir(path):
         if filename.startswith("scan"):
             os.remove(path + "\\" + filename)
+
+
+def pdf_to_img():
+    os.chdir(path)
+    for filename in os.listdir(path):
+        print(path + "\\" + filename)
+        pages = convert_from_path(path + "\\" + filename, size=(400, None), poppler_path=poppler)
+        for page in pages:
+            page.save(filename.replace(".pdf", ".jpg"), 'JPEG')

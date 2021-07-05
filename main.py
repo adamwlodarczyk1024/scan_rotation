@@ -1,14 +1,15 @@
 import scanpreparation
 # Function to rename multiple files
-import time
+
+
 def preparedata():
-    scanpreparation.renamefiles("scan")
-    scanpreparation.splitpdf()
+    scanpreparation.rename_files("scan")
+    scanpreparation.split_pdf()
     scanpreparation.remove_old_files()
-    scanpreparation.renamefiles("mono")
+    scanpreparation.rename_files("mono")
+    scanpreparation.pdf_to_img()
 # Driver Code
+
+
 if __name__ == '__main__':
-
-    # Calling main() function
     preparedata()
-
