@@ -5,24 +5,24 @@ from PyPDF2 import PdfFileWriter, PdfFileReader
 from pdf2image import *
 # PARAMETERS
 path = "C:\\Users\\Adam\\Documents\\dane do ml\\pdf"
-savepath = "C:\\Users\\Adam\\Documents\\dane do ml\\jpg"
+imgpath = "C:\\Users\\Adam\\Documents\\dane do ml\\jpg"
 poppler = 'C:\\poppler-21.03.0\\Library\\bin'
-
-
+path1= 'C:\\Users\\Adam\\PycharmProjects\\deep-image-orientation-angle-detection\\data\\dane\\180'
+COUNT = 1
 def rename_files(text):
-    os.chdir(path)
-    COUNT = 1
+    os.chdir(path1)
+
 
     def increment():
         global COUNT
         COUNT = COUNT + 1
 
-    for f in os.listdir(path):
+    for f in os.listdir(path1):
         f_name, f_ext = os.path.splitext(f)
         f_name = "{0}{1}".format(text, COUNT)
         increment()
 
-        new_name = '{}_zmiana{}'.format(f_name, f_ext)
+        new_name = '{}{}'.format(f_name, f_ext)
         os.rename(f, new_name)
 
 
