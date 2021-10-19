@@ -6,9 +6,12 @@
 We often misplace the document in the scanning area of the printer. That is why this project was created.
 Its aim was to train a neural network that would allow the rotation of scanned documents according to our reading direction.
 I used the template from the tutorial to train the network:
+https://www.tensorflow.org/tutorials/images/classification 
+
 
 The first problem I encountered was finding the set of scanned documents I needed to train the network.
-Below I present the dataset that I found after a long search.
+Below I present the dataset that I found after a long search:
+https://www.cs.cmu.edu/~aharley/rvl-cdip/ 
 
 Data processing consisted of extracting them from jammed directories. Then it was necessary to convert them to * .jpeg format
 
