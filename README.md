@@ -1,7 +1,7 @@
 # scan_rotation
 ![effect](https://user-images.githubusercontent.com/56223390/137892863-3af46488-bb93-4682-91e2-082e587edfcd.png)
-**
-Process description
+
+#Process description
 
 We often misplace the document in the scanning area of the printer. That is why this project was created.
 Its aim was to train a neural network that would allow the rotation of scanned documents according to our reading direction.
